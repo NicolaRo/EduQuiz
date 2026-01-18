@@ -1,0 +1,41 @@
+/* Centro tutto il contenuto della pagina */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centro verticale */
+  align-items: center; /* centro orizzontale */
+  margin: 0;
+}
+
+/* Contenuto principale centrato */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Schermate del quiz */
+#start-screen,
+#quiz-screen,
+#results-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option-button,
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+.option-button.selected {
+  background-color: #4caf50;
+  color: white;
+  border-color: #45a049;
+}
