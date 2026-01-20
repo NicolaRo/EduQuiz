@@ -36,6 +36,7 @@ async function startQuiz() {
 
     // faccio apparire in console il messaggio di punteggio azzerato
     console.log("Punteggio azzerato", dataStart);
+    alert("Punteggio azzerato! puoi ricominciare il quiz", dataStart.punteggio);
 
     // richiesta al server per ottenere le domande
     const responseQuestions = await fetch("http://localhost:3000/questions");
@@ -47,7 +48,7 @@ async function startQuiz() {
     questions = domande;
     // nascondo la schermata iniziale
     document.getElementById("start-screen").style.display = "none";
-    // mostro la schermata d' inizio
+    // mostro la schermata del quiz (che contiene le domande)
     document.getElementById("quiz-screen").style.display = "block";
     // mostro la prima domanda
     showQuestion();
@@ -61,7 +62,7 @@ function showQuestion() {
   // prendo la domanda corrente dall' array delle domande
   const currentQuestion = questions[currentQuestionIndex];
 
-  //mostro il testo della domanda nrll' elemento html
+  //mostro il testo della domanda nell' elemento html
   document.getElementById("question-text").textContent = currentQuestion.question;
 
   // Resetto la selezione (nessuna opzione selezionata ancora)
