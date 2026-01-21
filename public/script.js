@@ -9,6 +9,31 @@ let selectedOptionsIndex = null;
 
 // -- funzioni --
 
+//Funzione per mostrare il feedback modale
+function showFeedback(type, title, message, duration = 2000){
+  const modal = document.getElementById("feedback-modal");
+  const titleEl = document.getElementById("feedback-title");
+  const messageEl = document.getElementById("feedback-message");
+
+  //Rimuovo classi precedenti
+  modal.classList.remove("correct", "incorrect", "info");
+
+  //Aggiungo la classe giusta in base al tipo
+  modal.classList.add(type);
+
+  //Imposto i testi 
+  titleEl.textContent = title;
+  messageEl.textContent = message;
+
+  //Mostro il modale
+  modal.classList.add("show");
+
+  //Nascondo automaticamente dopo il tempo specificato
+  setTimeout (()=> {
+    modal.classList.remove("show");
+  }, duration);
+}
+
 // funzione per iniziare il quiz
 
 async function startQuiz() {
@@ -36,7 +61,8 @@ async function startQuiz() {
 
     // faccio apparire in console il messaggio di punteggio azzerato
     console.log("Punteggio azzerato", dataStart);
-    alert("Punteggio azzerato! puoi ricominciare il quiz", dataStart.punteggio);
+    // Sostituisco l'alert con il feedback modale
+    showFeedback("info", "Quiz Iniziato!", "Punteggio azzerato. Buona fortuna! 🍀", 1500);
 
     // richiesta al server per ottenere le domande
     const responseQuestions = await fetch("http://localhost:3000/questions");
@@ -46,14 +72,19 @@ async function startQuiz() {
 
     // salvo le domande nella variabile globale
     questions = domande;
-    // nascondo la schermata iniziale
-    document.getElementById("start-screen").style.display = "none";
-    // mostro la schermata del quiz (che contiene le domande)
-    document.getElementById("quiz-screen").style.display = "block";
-    // mostro la prima domanda
-    showQuestion();
+
+    // Aspetto che il feedback scompaia prima di mostrare la prima domanda
+    setTimeout(() => {
+      // nascondo la schermata iniziale
+      document.getElementById("start-screen").style.display = "none";
+      // mostro la schermata del quiz (che contiene le domande)
+      document.getElementById("quiz-screen").style.display = "block";
+      // mostro la prima domanda
+      showQuestion();
+    }, 1600);
   } catch (error) {
     console.error("Errore nell' avvio del quiz", error);
+    showFeedback("incorrect", "Errore", "Impossibile avviare il quiz!", 3000);
   }
 }
 
@@ -144,10 +175,22 @@ async function submitAnswer() {
 
     //mostriamo feedback all' utente
     if (result.correct) {
-      alert("Risposta Corretta! Punteggio attuale: " + result.punteggio);
+      showFeedback(
+        "correct", 
+        "Corretto! 🎉", 
+        `Punteggio: ${result.punteggio}`, 
+        2000
+      );
     } else {
-      alert("Risposta Errata! Punteggio attuale: " + result.punteggio);
+      showFeedback(
+        "incorrect", 
+        "Sbagliato! 😔", 
+        `Punteggio: ${result.punteggio}`, 
+        2000
+      );
     }
+    // Aspetto che il feedback scompaia prima di passare alla domanda successiva
+    setTimeout(() => {
 
     // passo alla domanda successiva
     currentQuestionIndex++;
@@ -158,9 +201,10 @@ async function submitAnswer() {
     } else {
       showResults();
     }
-  } catch (error) {
+  }, 2100);
+ } catch (error) {
     console.error("Errore nell' invio della risposta", error);
-    alert("Errore: impossibile inviare la risposta al server!");
+    showFeedback("incorrect", "Errore", "Impossibile inviare la risposta!", 3000);
   }
 }
 
