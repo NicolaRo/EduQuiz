@@ -24,6 +24,7 @@
     <meta property="og:site_name" content="EduQuiz" />
 
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
   </head>
   <body>
     <main>
@@ -60,6 +61,10 @@
 
       <!-- SCHERMATA 3: Risultati -->
       <div id="results-screen" style="display: none">
+        <div id="mouse-container">
+          <div id="lottie"></div>
+      </div>
+      <div id="cursor_preloader"></div>
         <h2>Quiz Completato!</h2>
         <p id="score-text"><!--Hai totalizzato X punti--></p>
         <button class="button" onclick="startQuiz()">
@@ -69,4 +74,6 @@
     </main>
   </body>
   <script src="script.js"></script>
+  <script src="chamaleon.js"></script>
+  
 </html>
