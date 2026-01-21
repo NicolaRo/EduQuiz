@@ -62,17 +62,29 @@ function showQuestion() {
   // prendo la domanda corrente dall' array delle domande
   const currentQuestion = questions[currentQuestionIndex];
 
-  //mostro il testo della domanda nell' elemento html
-  document.getElementById("question-text").textContent = currentQuestion.question;
+  //Prendo il testo della domanda tramite la sua classe CSS
+  const questionElement = document.getElementById("question-text");
+  //Rimuovo la classe per resettare l'animazione
+  questionElement.classList.remove("tracking-in-expand");
+  //Aspetto un frame prima di ri-aggiungere la classe (così l'animaione riparte)
+  setTimeout(()=>{
+    questionElement.textContent = currentQuestion.question;
+    questionElement.classList.add("tracking-in-expand");
+  }, 10);
 
-  // Resetto la selezione (nessuna opzione selezionata ancora)
-  selectedOptionsIndex = null;
+  
 
   /* svuoto il contenitore dalle opzioni precedenti.
   cioè rimuovo i bottoni delle opzioni precedenti.
   in caso contrario ad ogni nuova domanda comparirebbero i bottoni delle opzioni precedenti*/
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.innerHTML = "";
+
+  /* //mostro il testo della domanda nell' elemento html
+  document.getElementById("question-text").textContent = currentQuestion.question; */
+
+  // Resetto la selezione (nessuna opzione selezionata ancora)
+  selectedOptionsIndex = null;
 
   // creo ciclo per creare i bottoni delle opzioni
   currentQuestion.options.forEach((option, index) => {
