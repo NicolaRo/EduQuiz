@@ -22,22 +22,6 @@ main {
   flex-direction: column;
   align-items: center;
 }
-/*==== BUTTONS  */
-.option-button,
-button {
-  /* padding: 10px 20px; */
-  margin: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  border: 2px solid #ccc;
-  background-color: white;
-}
-
-.option-button.selected {
-  background-color: #4caf50;
-  color: white;
-  border-color: #45a049;
-}
 
 /* ===== ANIMAZIONE TRACKING IN EXPAND TESTO ===== */
 .tracking-in-expand {
@@ -70,7 +54,38 @@ button {
     opacity: 1;
   }
 }
- 
+
+/*==== BUTTONS  */
+.option-button {
+  padding: 1rem 2rem;
+  margin: 1rem;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.option-button:nth-child(1) {
+  background: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+.option-button:nth-child(2) {
+  background: linear-gradient(315deg, #ff9a9e 0%, #fad0c4 74%);
+}
+.option-button:nth-child(3) {
+  background: linear-gradient(315deg, #a18cd1 0%, #fbc2eb 74%);
+}
+.option-button:nth-child(4) {
+  background: linear-gradient(315deg, #f6d365 0%, #fda085 74%);
+}
+
+.option-button.selected {
+  background-color: #4caf50;
+  color: white;
+  border: solid 2px white;
+  box-shadow: 5px 5px 10px 2px #4bc73a;
+}
+
 .button {
   /* Variables */
   --button_radius: 0.75em;
@@ -103,6 +118,41 @@ button:hover .button_top {
 button:active .button_top {
   /* Push the button downwards when pressed */
   transform: translateY(0);
+}
+
+.option-button2 {
+  background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+  border: none;
+  z-index: 1;
+}
+.option-button2:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  transition: all 0.3s ease;
+}
+.option-button2:hover {
+  color: #fff;
+}
+.option-button2:hover:after {
+  top: 0;
+  height: 100%;
+}
+.option-button2:active {
+  top: 2px;
 }
 
 /*====== ANIMAZIONI =======*/
@@ -216,43 +266,9 @@ button:active .button_top {
 }
 
 
-.option-button2 {
-  background-color: #89d8d3;
-background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
-  border: none;
-  z-index: 1;
-}
-.option-button2:after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  border-radius: 5px;
-   background-color: #4dccc6;
-background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
-  box-shadow:
-   -7px -7px 20px 0px #fff9,
-   -4px -4px 5px 0px #fff9,
-   7px 7px 20px 0px #0002,
-   4px 4px 5px 0px #0001;
-  transition: all 0.3s ease;
-}
-.option-button2:hover {
-  color: #fff;
-}
-.option-button2:hover:after {
-  top: 0;
-  height: 100%;
-}
-.option-button2:active {
-  top: 2px;
-}
+
 /*===== BACKGROUNDS pagine ======*/
 
-/* From Uiverse.io by ariba_9087 */ 
 body {
   margin: 0;
   padding: 0;
