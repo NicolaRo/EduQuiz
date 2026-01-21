@@ -29,22 +29,42 @@
     <main>
       <!-- SCHERMATA 1: Iniziale -->
       <div id="start-screen">
+        <div class="container">
+          <div class="cloud front">
+            <span class="left-front"></span>
+            <span class="right-front"></span>
+          </div>
+          <span class="sun sunshine"></span>
+          <span class="sun"></span>
+          <div class="cloud back">
+            <span class="left-back"></span>
+            <span class="right-back"></span>
+          </div>
+        </div>
         <h1>Benvenuto su EduQuiz</h1>
-        <button onclick="startQuiz()">START</button>
+        <button class="button" onclick="startQuiz()">
+          <span class="button_top">START</span>
+        </button>
       </div>
 
       <!-- SCHERMATA 2: Quiz -->
-      <div id="quiz-screen" style="display: none">
+       <div class="pagina-1">
+        <div id="quiz-screen" style="display: none">
         <h2 id="question-text"><!-- Qui appare la domanda --></h2>
         <div id="options-container"><!--Qui appaiono i bottoni delle opzioni--></div>
-        <button onclick="submitAnswer()">CONFERMA</button>
+        <button class="button" onclick="submitAnswer()">
+          <span class="button_top">CONFERMA</span>
+        </button>
       </div>
+       </div>
 
       <!-- SCHERMATA 3: Risultati -->
       <div id="results-screen" style="display: none">
         <h2>Quiz Completato!</h2>
         <p id="score-text"><!--Hai totalizzato X punti--></p>
-        <button onclick="startQuiz()">RICOMINCIA</button>
+        <button class="button" onclick="startQuiz()">
+          <span class="button_top">RICOMINCIA</span>
+        </button>
       </div>
     </main>
   </body>
